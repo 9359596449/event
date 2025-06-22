@@ -1,0 +1,4 @@
+touch upload/bride/.gitkeep
+git add upload/bride/.gitkeep
+git commit -m "Add .gitkeep to track empty bride folder"
+git push
