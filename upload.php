@@ -1,12 +1,19 @@
 <?php
-// === File: upload.php ===
-include 'auth.php';
-include 'config.php';
-$side = $_POST['side'] ?? '';
-if (!in_array($side, ['bride', 'groom'])) die('Invalid side.');
-foreach ($_FILES['photos']['tmp_name'] as $i => $tmp) {
-  $name = basename($_FILES['photos']['name'][$i]);
-  move_uploaded_file($tmp, $settings['upload_dirs'][$side] . $name);
+$targetDir = "upload/bride/";
+
+if (!is_dir($targetDir)) {
+    mkdir($targetDir, 0755, true);
 }
-header('Location: index.php');
-?>
+
+foreach ($_FILES["photos"]["tmp_name"] as $key => $tmp_name) {
+    $filename = basename($_FILES["photos"]["name"][$key]);
+    $targetPath = $targetDir . $filename;
+
+    if (!move_uploaded_file($tmp_name, $targetPath)) {
+        // Log error, don't echo
+        error_log("Upload failed: $filename");
+    }
+}
+
+header("Location: index.php");
+exit;
