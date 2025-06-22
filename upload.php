@@ -2,7 +2,7 @@
 include 'auth.php';
 include 'config.php';
 $side = $_POST['side'] ?? 'bride'; // 'bride' or 'groom'
-$targetDir = "upload/$side/";
+$targetDir = "uploads/$side/";
 
 // ✅ Ensure directory exists before uploading
 if (!is_dir($targetDir)) {
