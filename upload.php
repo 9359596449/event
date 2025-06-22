@@ -21,6 +21,6 @@ if (isset($_FILES['photos'])) {
 }
 
 // Redirect after upload
-header("Location: view.php?side=$side");
+header("Location: index.php");
 exit;
 ?>
