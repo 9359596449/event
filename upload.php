@@ -4,7 +4,7 @@ include 'config.php';
 $side = $_POST['side'] ?? 'bride'; // 'bride' or 'groom'
 $targetDir = "upload/$side/";
 
-// Create folder if it doesn't exist
+// ✅ Ensure directory exists before uploading
 if (!is_dir($targetDir)) {
     mkdir($targetDir, 0755, true);
 }
