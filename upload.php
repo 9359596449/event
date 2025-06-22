@@ -1,4 +1,6 @@
 <?php
+include 'auth.php';
+include 'config.php';
 $side = $_POST['side'] ?? 'bride'; // 'bride' or 'groom'
 $targetDir = "upload/$side/";
 
