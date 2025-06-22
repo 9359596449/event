@@ -1,17 +1,24 @@
-# Use official PHP 8.2 image with Apache
 FROM php:8.2-apache
 
-# Enable Apache mod_rewrite for URL routing (used by .htaccess)
+# Enable URL rewriting
 RUN a2enmod rewrite
 
-# Copy all project files into Apache's web directory
-COPY . /var/www/html/
+# Set working directory
+WORKDIR /var/www/html
 
-# Set correct working directory
-WORKDIR /var/www/html/
+# Copy app files to container
+COPY . /var/www/html
 
-# Optional: Set file permissions (recommended for PHP apps)
+# Create upload directories inside container
+RUN mkdir -p /var/www/html/upload/bride /var/www/html/upload/groom
+
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html
 
-# Optional: Expose port 80 (default for web)
-EXPOSE 80
+# Required for Render: use dynamic port
+ENV PORT 10000
+RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf
+EXPOSE 10000
+
+# Start Apache in foreground
+CMD ["apache2-foreground"]
