@@ -3,7 +3,7 @@
 session_start();
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['username'] === 'admin' && $_POST['password'] === 'admin123') {
+    if ($_POST['username'] === 'praful' && $_POST['password'] === 'Praful@11') {
         $_SESSION['logged_in'] = true;
         header('Location: index.php');
         exit;
