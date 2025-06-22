@@ -10,7 +10,7 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # Create upload folders so they're available at runtime
-RUN mkdir -p /var/www/html/upload/bride /var/www/html/upload/groom
+RUN mkdir -p /var/www/html/uploads/bride /var/www/html/uploads/groom
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
