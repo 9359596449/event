@@ -14,11 +14,9 @@ if (isset($_FILES['photos'])) {
         $filename = basename($_FILES['photos']['name'][$key]);
         $targetPath = $targetDir . $filename;
 
-        if (move_uploaded_file($tmp_name, $targetPath)) {
-            // Success
-        } else {
-            error_log("❌ Failed to upload $filename");
-        }
+       if (!move_uploaded_file($tmp_name, $targetPath)) {
+    error_log("Upload failed: $filename"); // ✅ don't echo!
+}
     }
 }
 
